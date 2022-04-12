@@ -113,3 +113,7 @@ body {
 #signup-feedback, #login-feedback {
     margin-bottom: 10px;
 }
+
+.form .lbl {
+    text-align: left;
+}
