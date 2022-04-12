@@ -1,0 +1,83 @@
+body {
+    margin: 0%;
+    font-family: 'Heebo', sans-serif;
+    padding-top: 80px;
+}
+
+.container {
+    max-width: 1880px;
+    margin: auto;
+    padding: 0 16px;
+}
+
+ul {
+    margin: 0;
+    padding: 0%;
+}
+
+header {
+    background-color: #FFF;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.15);
+    height: 80px;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    z-index: 1;
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+
+}
+
+/* .logo {
+    width: 10px;
+    height: 10px;
+    border-radius: 60px 0 0 60px;
+} */
+
+header .logo {
+    display: inline-block;
+    font-size: 27px;
+    /* height: 0.5px; */
+    border-radius: 6px;
+}
+
+header .logo .blue_dot {
+    background-color: #ff4b2b;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 6px;
+}
+
+header nav {
+    display: inline-block;
+
+}
+
+header nav ul li {
+    display: inline-block;
+}
+
+header nav a {
+    color: #3E3E3E;
+    font-size: 15px;
+    letter-spacing: 0.37px;
+    margin-right: 24px;
+    text-decoration: none;
+    /* removes the underline in the a element */
+}
+
+header nav ul li a:hover {
+    color: #3E50E5;
+}
+
+header nav ul li:last-of-type a {
+    margin-right: 0%;
+}

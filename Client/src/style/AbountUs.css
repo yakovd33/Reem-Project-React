@@ -1,0 +1,47 @@
+.aboutus {
+    height: 80vh;
+    overflow: hidden;
+}
+
+.aboutus-container {
+    left: 0;
+    margin-top: 6rem;
+    padding: 20px;
+    text-align: center;
+}
+
+.aboutus-header {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.aboutus-header p {
+    /* color: orange; */
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.aboutus-content {
+    border-top: 1px solid #ccc;
+    text-align: left;
+    line-height: 50px;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.aboutus-content-container {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    height: 500px;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.aboutus-content-container img {
+    height: 500px;
+}
+
+/* .aboutus-content 
+  h1*/
