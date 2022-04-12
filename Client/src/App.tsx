@@ -14,7 +14,7 @@ import SignIn from './components/signUpIn/SignIn';
 import Chat from './components/Chat/Chat';
 // import Register from './components/signUpIn/Register';
 
-function App() {
+function App() {  
   return (
     // <div className="App">
     //   <p> Hello bitches </p>

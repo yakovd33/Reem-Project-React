@@ -1,49 +1,44 @@
-//import '../style/memberSignUpIn.css'
+import '../../style/memberSignUpIn.css';
 import { useState } from 'react';
+import axios from 'axios';
 import React from 'react';
 
 const SignIn = () => {
+    const [ feedback, setFeedback ] = useState('');
+    const [ username, setUsername ] = useState("");
+    const [ password, setPassword ] = useState("");
 
-    let [formInfo, setFormInfo] = useState(
-        {
-            userName: "",
-            age: "",
-            status: "",
-            feelingScale: "",
-            kids: ""
-        }
-    )
+    const onSubmit = (e : React.FormEvent) => {
+        e.preventDefault();
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+        axios.post(`http://localhost:4000/users/login/`, { username, password }).then((response : any) => {
+            setFeedback(response.data.msg);
 
-
-    React.useEffect(() => {
-        const signUpButton = document.getElementById('signUp');
-        const signInButton = document.getElementById('signIn');
-        const container = document.getElementById('formContainer');
-
-        signUpButton?.addEventListener('click', () => {
-            container?.classList.add('right-panel-active');
+            if (response.data.success) {
+                localStorage.setItem('user', response.data.user);
+                window.location.href = '/';
+            }
         });
+    }
 
-        signInButton?.addEventListener('click', () => {
-            container?.classList.remove('right-panel-active');
-        });
-    }, [])
     return (
         <div className='MemberPage' >
             <div className="formContainer" id="formContainer">
-
-                {/* ---------------------------------------------sign in--------------------------------------------------- */}
                 <div className="form-container sign-in-container">
                     <div className="login">
-                        <form action="#">
-                            <h1>Login</h1>
-                            <input type="text" placeholder="userName" />
-                            <input type="text" placeholder="password" />
-                            <button>Login</button>
-                        </form>
+                        <div className="form">
+                            <h1>LOGIN</h1>
+                            <form className="login-form" onSubmit={ (e) => onSubmit(e) }>
+                                <input type="text" placeholder="username" value={ username} onChange={ (e) => setUsername(e.target.value) } />
+                                <input type="password" placeholder="password" value={ password } onChange={ (e) => setPassword(e.target.value) } />
+
+                                { feedback && <div id="login-feedback">{ feedback }</div> }
+
+                                <button type="submit">login</button>
+
+                                <p className="message">Not registered? <a href="/UserSignUp">Create an account</a></p>
+                            </form>
+                        </div>
                     </div>
                 </div>
 

@@ -1,146 +1,86 @@
-
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
+import '../../style/memberSignUpIn.css';
 
 const UserSignUp = () => {
-    console.log('fdsvdssfds');
+    const [ feedback, setFeedback ] = useState('');
+    const [ isFirstTime, setIsFirstTime ] = useState(true);
+    const [ username, setUsername ] = useState('');
+    const [ age, setAge ] = useState('');
+    const [ status, setStatus ] = useState('');
+    const [ region, setRegion ] = useState('');
+    const [ kids, setKids ] = useState('');
+    const [ password, setPassword ] = useState('');
+
+    const [ isPysicalViolence, setPhysicalViolence ] = useState(false);
+    const [ isSexualViolence, setIsSexualViolence ] = useState(false);
+    const [ isPsycologicalViolence, setIsPsychologicalViolence ] = useState(false);
+    const [ isEmotionalViolence, setIsEmotionalViolence ] = useState(false);
+    const [ isEconimicViolence, setIsEconimicViolence ] = useState(false);
+
+    const onSubmit = (e : React.FormEvent) => {
+        e.preventDefault();
+
+        axios.post(`http://localhost:4000/users/signup/`, { isFirstTime, username, age, status, region, kids, password, isPsycologicalViolence, isSexualViolence, isPysicalViolence, isEmotionalViolence, isEconimicViolence }).then((response : any) => {
+            setFeedback(response.data);
+        });
+    }
 
     return (
-
-
-        <div className="UsersPage">
+        <div className="MemberPage">
             <div className="formContainer" id="formContainer">
-                {/* -----------------------------------sign up------------------------------------------------------------- */}
-                <div className="form-container sign-up-container">
-                    <form>
-                        <h1>Create Account</h1>
-                        <div>
-                            <input
-                                type="checkbox"
-                                id="beenHere"
-                                name="beenHere"
-                                value="true"
-                            />
-                            <label>Click me if this is your first time here</label>
-                            <br></br>
+                <div className="login">
+                    <div className="form signup">
+                        <h1>CREATE AN ACCOUNT</h1>
+                        <form className="login-form" onSubmit={ (e) => onSubmit(e) }>
+                            <label className="checkbox-label" htmlFor="first-time-checkbox"><input type="checkbox" name="" id="first-time-checkbox" checked={ isFirstTime } onChange={ (e) => setIsFirstTime(e.target.checked) } /> Click if it's your first time here</label>
+                            <label className="form-label">USERNAME:</label>
+                            <input type="text" placeholder="USERNAME" value={ username } onChange={ (e) => setUsername(e.target.value) } />
 
-                            <label className="lbl">Create a userName:</label>
-                            <div id="divArounduserName">
-                                <input
-                                    type="text"
-                                    id="fname"
-                                    name="fname"
-                                    placeholder="userName"
-                                // onChange={hnadleonChange("userName")}
-                                />
+                            <label className="form-label" htmlFor="">HOW OLD ARE YOU:</label>
+                            <input type="number" placeholder="AGE" value={ age } onChange={ (e) => setAge(e.target.value) } />
+
+                            <label className="form-label" htmlFor="">WHAT IS YOUR STATUS?</label>
+                            <select className="select" onChange={ (e) => setStatus(e.target.value) }>
+                                <option>Select an option</option>
+                                <option value="married">Married</option>
+                                <option value="married">Divorced</option>
+                                <option value="married">Widowed</option>
+                                <option value="married">In a relationship</option>
+                                <option value="married">Single</option>
+                            </select>
+
+                            <label className="form-label" htmlFor="">WHERE DO YOU LIVE?</label>
+                            <select className="select"onChange={ (e) => setRegion(e.target.value) }>
+                                <option>Select an option</option>
+                                <option value="Northern">Northern district</option>
+                                <option value="Haifa">Haifa district</option>
+                                <option value="Central">Central district</option>
+                                <option value="Southern">Southern district</option>
+                                <option value="Jerusalem">Jerusalem district</option>
+                            </select>
+
+                            <label className="form-label" htmlFor="">HOW MANY KIDS DO YOU HAVE?</label>
+                            <input type="number" placeholder="KIDS" value={ kids } onChange={ (e) => setKids(e.target.value) } />
+
+                            <label className="form-label" htmlFor="">CHOOSE A PASSWORD</label>
+                            <input type="password" placeholder="password" value={ password } onChange={ (e) => setPassword(e.target.value) } />
+
+                            <div id="choose-violence">
+                                <div className="lbl">Have you ever experienced:</div>
+                                <label className="checkbox-label"><input type="checkbox" checked={ isPysicalViolence } onChange={ (e) => setPhysicalViolence(e.target.checked) } value="physical" /> Pysical violence</label>
+                                <label className="checkbox-label"><input type="checkbox" checked={ isSexualViolence } onChange={ (e) => setIsSexualViolence(e.target.checked) } value="sexual" /> Sexual violence</label>
+                                <label className="checkbox-label"><input type="checkbox" checked={ isPsycologicalViolence } onChange={ (e) => setIsPsychologicalViolence(e.target.checked) } value="sexual" /> Psychological violence</label>
+                                <label className="checkbox-label"><input type="checkbox" checked={ isEmotionalViolence } onChange={ (e) => setIsEmotionalViolence(e.target.checked) } value="sexual" /> Emotional violence</label>
+                                <label className="checkbox-label"><input type="checkbox" checked={ isEconimicViolence } onChange={ (e) => setIsEconimicViolence(e.target.checked) } value="sexual" /> Economic violence</label>
                             </div>
 
-                            <div id="divAroundAge">
-                                <label className="lbl">How old are you:</label>
-                                <input
-                                    type="number"
-                                    id="Age"
-                                    name="Age"
-                                    placeholder="age"
-                                //onChange={hnadleonChange("age")}
-                                />
-                            </div>
+                            { feedback && <div id="signup-feedback">{ feedback }</div> }
 
-                            <div id="divAroundStatus">
-                                <label className="lbl">Status</label>
-                                <select
-                                    id="status"
-                                    name="status"
-                                //onChange={hnadleonChange("status")}
-                                >
-                                    <option value="status" disabled>
-                                        select an status
-                                    </option>
-                                    <option value="married">married</option>
-                                    <option value="divorsed">divorsed</option>
-                                    <option value="widowed">widowed</option>
-                                    <option value="inRelationship">in a relationship</option>
-                                    <option value="single">single</option>
-                                </select>
-                            </div>
-
-                            <div id="divAroundRegion">
-                                <label className="lbl">region</label>
-                                <select
-                                    id="region"
-                                    name="region"
-                                //onChange={hnadleonChange("region")}
-                                >
-                                    <option value="choose" disabled>
-                                        select an option
-                                    </option>
-                                    <option value="Northern">Northern district</option>
-                                    <option value="Haifa">Haifa district</option>
-                                    <option value="Central">Central district</option>
-                                    <option value="Southern">Southern district</option>
-                                    <option value="Jerusalem">Jerusalem district</option>
-                                </select>
-                            </div>
-
-                            <div id="divAroundkids">
-                                <label className="lbl">kids</label>
-                                <input
-                                    type="text"
-                                    id="kidsStr"
-                                    name="kidsStr"
-                                    placeholder=""
-                                //onChange={hnadleonChange("kids")}
-                                />
-                            </div>
-
-                            <div>
-                                <label className="lbl">Have you ever experienced:</label>
-                                <input
-                                    type="checkbox"
-                                    id="physical"
-                                    name="physical"
-                                    value="physical"
-                                //onChange={hnadleonChange("physicalViolence")}
-                                />{" "}
-                                <label>physical violence</label>
-                                <input
-                                    type="checkbox"
-                                    id="sexual"
-                                    name="sexual"
-                                    value="sexual"
-                                //onChange={hnadleonChange("sexualViolence")}
-                                />
-                                <label>sexual violence</label>
-                                <input
-                                    type="checkbox"
-                                    id="emotional"
-                                    name="emotional"
-                                    value="emotional"
-                                //onChange={hnadleonChange("emotionalViolence")}
-                                />
-                                <label>emotional violence</label>
-                                <input
-                                    type="checkbox"
-                                    id="emotionalViolence"
-                                    name="emotionalViolence"
-                                    value="emotionalViolence"
-                                //onChange={hnadleonChange("psychologicalViolence")}
-                                />
-                                <label>psychological violence</label>
-                                <input
-                                    type="checkbox"
-                                    id="economic"
-                                    name="economic"
-                                    value="economic"
-                                //onChange={hnadleonChange("economicViolence")}
-                                />
-                                <label>economic violence</label>
-                            </div>
-
-
-                        </div>
-                        {/* <button onClick={handleSubmit}>Sign Up</button> */}
-                        <button >Sign Up</button>
-                    </form>
+                            <button type="submit">SIGNUP</button>
+                            <p className="message">Already have an account? <a href="/SignIn">Login</a></p>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

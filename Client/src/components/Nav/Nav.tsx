@@ -1,8 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { navLinks } from "../data/Nav";
 import '../../style/Nav.css';
-import LogoGIF from '../../images/anxiety/Logo 500x500 px.gif';
-import React from 'react';
+import AuthHelper from "../../helpers/AuthHelper";
 
 const Nav = () => {
     return (
@@ -15,7 +13,18 @@ const Nav = () => {
                     {/* <img src={LogoGIF} alt="aboutUs" /> */}
                 </section>
                 <nav>
-                    {navLinks.map((curLink, index) => <NavLink key={index} to={curLink.path}>{curLink.link}</NavLink>)}
+                    <NavLink to="/aboutus">About Us</NavLink>
+                    { AuthHelper.isLogged() &&
+                        <NavLink to="/Chat">Chat</NavLink>
+                    }
+
+                    { !AuthHelper.isLogged() &&
+                        <NavLink to="/SignIn">Login/Register</NavLink>
+                    }
+
+                    { AuthHelper.isLogged() &&
+                        <NavLink to="#" onClick={ () => { AuthHelper.logout(); window.location.href = '/' } }>Logout</NavLink>
+                    }
                 </nav>
             </div>
         </header>

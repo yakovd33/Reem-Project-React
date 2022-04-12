@@ -1,5 +1,0 @@
-connecting to mongoDB compass
-mongodb+srv://SafeMeProject:1234@cluster0.vteyi.mongodb.net/test
-
-connecting to app:
-mongodb+srv://mongodb+srv://SafeMeProject:1234@cluster0.vteyi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
