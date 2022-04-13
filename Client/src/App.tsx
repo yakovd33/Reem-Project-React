@@ -12,14 +12,11 @@ import UserSignUp from "./components/signUpIn/UserSignUp";
 import MemberSignUp from './components/signUpIn/MemberSignUp';
 import SignIn from './components/signUpIn/SignIn';
 import Chat from './components/Chat/Chat';
-// import Register from './components/signUpIn/Register';
+import Recommendations from './components/Recommendations/Recommendations';
+import Statistics from './components/Statistics/Statistics';
 
 function App() {  
   return (
-    // <div className="App">
-    //   <p> Hello bitches </p>
-    // </div>
-
     <BrowserRouter>
       <Nav />
       <Routes>
@@ -29,11 +26,8 @@ function App() {
         <Route path="/MemberSignUp" element={<MemberSignUp />} />
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/Chat" element={<Chat />} />
-        {/* <Route path="/Register" element={<Register />} /> */}
-        {/* <Route path="/api" element={<Api />} /> */}
-        {/* <Route path="/src/components/contents/1anxiety.tsx" element={<Anxiety />} /> */}
-        {/* <Route path="/userSignUpIn" element={<UserSignUp />} /> */}
-        {/* <Route path="/memberSignUpIn" element={<MemberSignUp />} /> */}
+        <Route path="/Recommendations" element={<Recommendations />} />
+        <Route path="/Statistics" element={<Statistics />} />
       </Routes>
       <Footer />
     </BrowserRouter>

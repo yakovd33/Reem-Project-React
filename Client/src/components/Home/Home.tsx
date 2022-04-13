@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import HeroImage from "../../images/anxiety/Hero_image.png";
 //import { API, fetchAllCrewMembers } from "../server/api";
 import '../../style/Home.css';
@@ -23,7 +24,9 @@ export const Home = () => {
                             feel free to spell out your guts, speak about your darkest
                             thoughts we will help to through it
                         </p>
-                        <button>start a chat</button>
+                        <Link to="/Chat">
+                            <button>start a chat</button>
+                        </Link>
                     </div>
                 </div>
             </section>

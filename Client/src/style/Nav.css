@@ -40,6 +40,15 @@ header .container {
     border-radius: 60px 0 0 60px;
 } */
 
+.logo {
+    text-decoration: none;
+    color: #000;
+}
+
+.logo-img {
+    height: 40px
+}
+
 header .logo {
     display: inline-block;
     font-size: 27px;

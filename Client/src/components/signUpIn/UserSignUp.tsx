@@ -51,7 +51,7 @@ const UserSignUp = () => {
                             </select>
 
                             <label className="form-label" htmlFor="">WHERE DO YOU LIVE?</label>
-                            <select className="select"onChange={ (e) => setRegion(e.target.value) }>
+                            <select className="select" onChange={ (e) => setRegion(e.target.value) }>
                                 <option>Select an option</option>
                                 <option value="Northern">Northern district</option>
                                 <option value="Haifa">Haifa district</option>

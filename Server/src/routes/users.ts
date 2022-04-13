@@ -25,10 +25,6 @@ router.post('/signup', async (req : Request, res : Response, next : NextFunction
 });
 
 // Login
-interface userInterface {
-
-}
-
 router.post('/login', async (req : Request, res : Response, next : NextFunction) => {
     let response = {
         success: false,
@@ -61,6 +57,17 @@ router.post('/login', async (req : Request, res : Response, next : NextFunction)
     }
 
     res.json(response)
+});
+
+router.get('/:region', async (req : Request, res : Response, next : NextFunction) => {
+    let { region } = req.params;
+    let users = <any>[];
+
+    if (region) {
+        users = await userModel.find({ region });
+    }
+
+    res.json(users);
 });
 
 export default router;
