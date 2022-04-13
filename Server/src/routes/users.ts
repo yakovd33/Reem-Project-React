@@ -13,9 +13,17 @@ router.post('/signup', async (req : Request, res : Response, next : NextFunction
     if (username && status && region && age && kids && password) {
         req.body.password = md5(password);
 
-        let newUser = new userModel(req.body);
-        newUser.save();
-        response = 'You were successfuly signed up. you can log in';
+        // Check if user exists
+        let userQuery = await userModel.find({ username });
+
+        if (!userQuery.length) {
+            let newUser = new userModel(req.body);
+            newUser.save();
+            response = 'You were successfuly signed up. you can log in';
+        } else {
+            response = 'Username already exists';
+        }
+
         
     } else {
         response = 'Make sure all of the fields are filled.';

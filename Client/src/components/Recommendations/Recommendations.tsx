@@ -28,7 +28,6 @@ const Recommendations = () => {
         <div className="container">
             <h2 id="rec-title">here you can see some police stations and shelters in your region </h2>
 
-
             <table className="table-fill">
                 <thead>
                     <tr>
@@ -41,8 +40,8 @@ const Recommendations = () => {
                     {recommendations.map((recommendation) => (
                         <tr className={ `${ recommendation.region == AuthHelper.getUser().region ? 'current' : '' }` }>
                             <td className="text-left">{ recommendation.region }</td>
-                            <td className="text-left">$ 50,000.00</td>
-                            <td className="text-left">Shelter</td>
+                            <td className="text-left">{ recommendation.address }</td>
+                            <td className="text-left">{ recommendation.type }</td>
                         </tr>
                     ))}
                 </tbody>
