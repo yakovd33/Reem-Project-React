@@ -72,7 +72,7 @@ router.get('/:region', async (req : Request, res : Response, next : NextFunction
     let users = <any>[];
 
     if (region) {
-        users = await userModel.find({ region });
+        users = await userModel.find({ $and: [ { region }, { isAdmin: false } ] });
     }
 
     res.json(users);

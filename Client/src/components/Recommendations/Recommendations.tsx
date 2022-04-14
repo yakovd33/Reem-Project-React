@@ -38,7 +38,7 @@ const Recommendations = () => {
                 </thead>
                 <tbody className="table-hover">
                     {recommendations.map((recommendation) => (
-                        <tr className={ `${ recommendation.region == AuthHelper.getUser().region ? 'current' : '' }` }>
+                        <tr className={ `${ recommendation.region == (AuthHelper.isLogged() && AuthHelper.getUser().region) ? 'current' : '' }` }>
                             <td className="text-left">{ recommendation.region }</td>
                             <td className="text-left">{ recommendation.address }</td>
                             <td className="text-left">{ recommendation.type }</td>
